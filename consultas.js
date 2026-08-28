@@ -1,7 +1,5 @@
-// ==========================================
-// BÚSQUEDAS tengo miedo
-// ==========================================
 
+// BÚSQUEDAS tengo miedo
 // Ejercicio 1: Ingredientes por debajo del punto de pedido
 db.ingredientes.find({
   $expr: { $lt: ["$cantidadDisponible", "$puntoPedido"] }
@@ -80,9 +78,8 @@ db.platos.aggregate([
   { $sort: { margenGanancia: -1 } }
 ]);
 
-// ==========================================
-// CURSORES
-// ==========================================
+// CURSORES................
+
 
 // Ejercicio 1: Recorrer ingredientes
 var cursor1 = db.ingredientes.find();
