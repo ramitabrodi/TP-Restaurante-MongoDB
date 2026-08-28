@@ -1,11 +1,10 @@
-### Esquema de la Base de Datos — Sistema de Gestión de Inventarios para Restaurante
+## Esquema de la Base de Datos — Sistema de Gestión de Inventarios para Restaurante
 
 Base de datos: `restaurante`
 
 El sistema se modela con **4 colecciones**: `proveedores`, `ingredientes`, `platos` y `ordenesCompra`.
 
-
-## 1. Colección: `proveedores`
+### 1. Colección: `proveedores`
 
 | Campo       | Tipo     | Descripción                                  |
 |-------------|----------|-----------------------------------------------|
@@ -16,7 +15,6 @@ El sistema se modela con **4 colecciones**: `proveedores`, `ingredientes`, `plat
 | `direccion` | String   | Dirección física del proveedor.                |
 
 No depende de ninguna otra colección.
-
 
 ## 2. Colección: `ingredientes`
 
