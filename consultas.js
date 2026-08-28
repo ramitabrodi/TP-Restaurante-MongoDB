@@ -1,11 +1,11 @@
 
-// BÚSQUEDAS tengo miedo
+// BÚSQUEDAS 
 // Ejercicio 1: Ingredientes por debajo del punto de pedido
 db.ingredientes.find({
   $expr: { $lt: ["$cantidadDisponible", "$puntoPedido"] }
 });
 
-// Ejercicio 2: Órdenes de compra "pendiente" o "enviada" hdp
+// Ejercicio 2: Órdenes de compra "pendiente" o "enviada" 
 db.ordenesCompra.aggregate([
   { $match: { estado: { $in: ["pendiente", "enviada"] } } },
   {
