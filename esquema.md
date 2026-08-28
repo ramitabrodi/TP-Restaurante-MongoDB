@@ -1,10 +1,9 @@
-# Esquema de la Base de Datos — Sistema de Gestión de Inventarios para Restaurante
+### Esquema de la Base de Datos — Sistema de Gestión de Inventarios para Restaurante
 
 Base de datos: `restaurante`
 
 El sistema se modela con **4 colecciones**: `proveedores`, `ingredientes`, `platos` y `ordenesCompra`.
 
----
 
 ## 1. Colección: `proveedores`
 
