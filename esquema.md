@@ -1,4 +1,4 @@
-### Esquema de la Base de Datos — Sistema de Gestión de Inventarios para Restaurante
+### Esquema de la Base de Datos : Sistema de Gestión de Inventarios para Restaurante
 
 Base de datos: `restaurante`
 
