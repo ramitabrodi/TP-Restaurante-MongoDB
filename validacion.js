@@ -33,7 +33,7 @@ db.runCommand({
 });
 
 
-// 2. Colección: ingredientes tengo miedon de lo hago aca
+// 2. Colección: ingredientes
 
 db.runCommand({
   collMod: "ingredientes",
@@ -128,7 +128,7 @@ db.runCommand({
   },
   validationAction: "error"
 });
--
+
 // 4. Colección: ordenesCompra
 db.runCommand({
   collMod: "ordenesCompra",
