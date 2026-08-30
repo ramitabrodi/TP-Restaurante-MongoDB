@@ -63,4 +63,4 @@ db.ordenesCompra.insertMany([
     estado: "pendiente",
     total: 11200
   }
-])
+])  

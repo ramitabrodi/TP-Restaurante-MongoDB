@@ -3,7 +3,7 @@ db.ingredientes.insertMany([
     _id: ObjectId("a1b2c3d4e5f6070809020001"),
     nombre: "Filete de Salmón",
     unidad: "kg",
-    cantidadDisponible: 9.5,
+    cantidadDisponible: 4.5,
     puntoPedido: 6,
     proveedor_id: ObjectId("a1b2c3d4e5f6070809010002")
   },
@@ -19,7 +19,7 @@ db.ingredientes.insertMany([
     _id: ObjectId("a1b2c3d4e5f6070809020003"),
     nombre: "Espinaca Fresca",
     unidad: "kg",
-    cantidadDisponible: 7.8,
+    cantidadDisponible: 2.8,
     puntoPedido: 5,
     proveedor_id: ObjectId("a1b2c3d4e5f6070809010003")
   },
@@ -27,7 +27,7 @@ db.ingredientes.insertMany([
     _id: ObjectId("a1b2c3d4e5f6070809020004"),
     nombre: "Queso Parmesano",
     unidad: "kg",
-    cantidadDisponible: 8.2,
+    cantidadDisponible: 3.2,
     puntoPedido: 4,
     proveedor_id: ObjectId("a1b2c3d4e5f6070809010004")
   },
@@ -35,7 +35,7 @@ db.ingredientes.insertMany([
     _id: ObjectId("a1b2c3d4e5f6070809020005"),
     nombre: "Champiñones",
     unidad: "kg",
-    cantidadDisponible: 6.5,
+    cantidadDisponible: 1.5,
     puntoPedido: 3,
     proveedor_id: ObjectId("a1b2c3d4e5f6070809010003")
   },
