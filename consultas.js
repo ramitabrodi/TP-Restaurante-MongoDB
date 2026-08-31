@@ -180,10 +180,8 @@ db.platos.updateMany(
   { $mul: { precioVenta: 1.08 } }
 );
 
-// Ingredientes usados en al menos un plato activo
 var idsUsadosEnActivos = db.platos.distinct("ingredientes.ingrediente_id", { activo: true });
 
-// Ingredientes que NO aparecen en ningún plato activo (candidatos a "obsoletos")
 var obsoletos = db.ingredientes.find({ _id: { $nin: idsUsadosEnActivos } });
 
 obsoletos.forEach(doc => {

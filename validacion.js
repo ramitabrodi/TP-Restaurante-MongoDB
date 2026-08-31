@@ -1,3 +1,7 @@
+db.createCollection("proveedores");
+db.createCollection("ingredientes");
+db.createCollection("platos");
+db.createCollection("ordenesCompra");
 
 // 1. Colección: proveedores
 db.runCommand({
