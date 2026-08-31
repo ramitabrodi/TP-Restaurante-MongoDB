@@ -1,4 +1,3 @@
-
 // BÚSQUEDAS 
 // Ejercicio 1: Ingredientes por debajo del punto de pedido
 db.ingredientes.find({
@@ -78,7 +77,7 @@ db.platos.aggregate([
   { $sort: { margenGanancia: -1 } }
 ]);
 
-// CURSORES................
+// CURSORES
 
 
 // Ejercicio 1: Recorrer ingredientes
@@ -115,4 +114,79 @@ cursor4.forEach(doc => {
 var cursor5 = db.platos.find({ activo: false });
 cursor5.forEach(doc => {
   print("Plato fuera de menú: " + doc.nombre);
+});
+
+// CRUD
+
+// Ejercicio 1: Crear y leer ingredientes
+var proveedorHortalizas = db.proveedores.findOne({ nombre: "Hortalizas Verdes S.A." });
+
+db.ingredientes.insertOne({
+  nombre: "Limón",
+  unidad: "kg",
+  cantidadDisponible: 15,
+  puntoPedido: 5,
+  proveedor_id: proveedorHortalizas._id
+});
+
+// Leer todos los ingredientes de ese proveedor específico
+db.ingredientes.find({ proveedor_id: proveedorHortalizas._id });
+
+// Ejercicio 2: Actualizar el estado de una orden de compra
+// Se toma la orden "pendiente" existente (a1b2c3d4e5f6070809040004) y se marca como recibida hoy.
+db.ordenesCompra.updateOne(
+  { _id: ObjectId("a1b2c3d4e5f6070809040004") },
+  {
+    $set: {
+      estado: "recibida",
+      fechaEntrega: new Date()
+    }
+  }
+);
+
+// Verificamos el resultado
+db.ordenesCompra.findOne({ _id: ObjectId("a1b2c3d4e5f6070809040004") });
+
+
+// Ejercicio 3: Eliminar un plato inactivo y sus referencias
+// Nota: en este esquema ningún otro documento referencia el _id de un plato
+// (ordenesCompra e ingredientes son referenciados POR platos, no al revés),
+// así que no hay referencias externas que limpiar además del documento mismo.
+db.platos.deleteOne({ nombre: "Sopa de Champiñones", activo: false });
+
+
+// Ejercicio 4: Crear una nueva orden de compra y leer órdenes de un proveedor
+var proveedorGaucho = db.proveedores.findOne({ nombre: "Carnicería El Gaucho" });
+var salmon = db.ingredientes.findOne({ nombre: "Filete de Salmón" });
+
+db.ordenesCompra.insertOne({
+  proveedor_id: proveedorGaucho._id,
+  items: [
+    { ingrediente_id: salmon._id, cantidad: 10 }
+  ],
+  fechaPedido: new Date(),
+  fechaEntrega: null,
+  estado: "pendiente",
+  total: 30000.00
+});
+
+// Leer todas las órdenes de ese proveedor (la vieja + la recién creada)
+db.ordenesCompra.find({ proveedor_id: proveedorGaucho._id });
+
+
+// Ejercicio 5: Actualizar el precio de venta de los platos y eliminar ingredientes obsoletos
+db.platos.updateMany(
+  { activo: true },
+  { $mul: { precioVenta: 1.08 } }
+);
+
+// Ingredientes usados en al menos un plato activo
+var idsUsadosEnActivos = db.platos.distinct("ingredientes.ingrediente_id", { activo: true });
+
+// Ingredientes que NO aparecen en ningún plato activo (candidatos a "obsoletos")
+var obsoletos = db.ingredientes.find({ _id: { $nin: idsUsadosEnActivos } });
+
+obsoletos.forEach(doc => {
+  print("Ingrediente no usado en platos activos, se elimina: " + doc.nombre);
+  db.ingredientes.deleteOne({ _id: doc._id });
 });
